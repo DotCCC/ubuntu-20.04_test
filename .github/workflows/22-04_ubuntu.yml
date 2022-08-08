@@ -41,7 +41,9 @@ jobs:
             sudo apt install --assume-yes --fix-broken
             sudo apt update && sudo apt -f install
             sudo apt install python3-pip -y
-            sudo apt-get install -y xvfb 
+            sudo apt-get install -y xvfb
+            sudo apt-get install xbase-clients
+            sudo apt-get install python3-psutil
             pip3 install nbformat
             pip3 install gdown
             pip3 install pika
