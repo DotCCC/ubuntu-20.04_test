@@ -39,7 +39,7 @@ jobs:
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
             sudo apt-get install xbase-clients
             sudo apt-get install python3-psutil
-            sudo dpkg --install google-chrome-stable_current_amd64.deb
+            sudo dpkg --install --ignore-depends=xbase-clients,python3-psutil google-chrome-stable_current_amd64.deb
             sudo apt install --assume-yes --fix-broken
             sudo apt update && sudo apt -f install
             sudo apt install python3-pip -y
