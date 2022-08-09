@@ -5,7 +5,6 @@ on:
      auth:
         description: 'GRDP Authorization Code'
         required: true
-        default: 'paste your code here'
   
 defaults:
   run:
@@ -55,10 +54,10 @@ jobs:
     - name: generate script
       run: |
            touch setup.sh
-           echo "${{ github.event.inputs.auth }}" >> "setup.sh"
+           echo "${{ inputs.auth }}" >> "setup.sh"
            chmod 777 setup.sh
     - name: initialize GRDP
-      run: |   
+      run: |
            expect -c '
            spawn ./setup.sh
            expect "Enter a PIN of at least six digits: "
