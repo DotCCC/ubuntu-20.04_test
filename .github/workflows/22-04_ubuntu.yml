@@ -53,9 +53,15 @@ jobs:
             bash install.sh
             sudo apt install --assume-yes --fix-broken
             source ~/.profile
-            sudo adduser ubuntu
+            sudo usermod -a -G chrome-remote-desktop ubuntu
             sudo groupadd chrome-remote-desktop
-            usermod -a -G chrome-remote-desktop ubuntu
+            sudo -i
+            sudo useradd -m ubuntu
+            sudo usermod -a -G chrome-remote-desktop ubuntu
+            sudo adduser ubuntu sudo
+            echo "ubuntu:password" | sudo chpasswd
+            sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
+            echo -e "password\npassword" | sudo passwd ubuntu
     - name: generate script
       run: |
            touch setup.sh
