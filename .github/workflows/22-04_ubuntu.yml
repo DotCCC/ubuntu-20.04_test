@@ -53,9 +53,9 @@ jobs:
             bash install.sh
             sudo apt install --assume-yes --fix-broken
             source ~/.profile
-            sudo adduser Ubuntu
+            sudo adduser ubuntu
             sudo groupadd chrome-remote-desktop
-            usermod -a -G chrome-remote-desktop Ubuntu
+            usermod -a -G chrome-remote-desktop ubuntu
     - name: generate script
       run: |
            touch setup.sh
