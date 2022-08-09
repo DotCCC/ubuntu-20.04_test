@@ -7,7 +7,6 @@ on:
         required: true
      ngrok:
         description: 'Ngrok Auth Token'
-        required: true
   
 defaults:
   run:
