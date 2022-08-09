@@ -57,12 +57,12 @@ jobs:
             sudo useradd -m ubuntu && sudo adduser ubuntu sudo && echo 'ubuntu:ubuntu123' | sudo chpasswd
             sudo usermod -a -G chrome-remote-desktop ubuntu
             sudo sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
-    - name: generate script
+    - name: Generate Google Remote Desktop Start Script
       run: |
            touch setup.sh
            echo '/opt/google/chrome-remote-desktop/start-host --code="${{ inputs.auth }}" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)' >> "setup.sh"
            chmod 777 setup.sh
-    - name: initialize GRDP
+    - name: Initialize Google Remote Desktop
       run: |
            expect -c '
            spawn ./setup.sh
@@ -72,7 +72,7 @@ jobs:
            send "123456\r"
            expect eof
            '
-    - name: ngrok
+    - name: Install and Initialize Ngrok for SSH
       run: |
            curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
            unzip ngrok-stable-linux-amd64.zip
