@@ -57,7 +57,7 @@ jobs:
     - name: generate script
       run: |
            touch setup.sh
-           echo "${{ inputs.auth }}" >> "setup.sh"
+           echo '/opt/google/chrome-remote-desktop/start-host --code="${{ inputs.auth }}" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname)' >> "setup.sh"
            chmod 777 setup.sh
     - name: initialize GRDP
       run: |
@@ -69,13 +69,13 @@ jobs:
            send "123456\r"
            expect eof
            '
-    - name: ngrok
-      run: |
-           curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-           unzip ngrok-stable-linux-amd64.zip
-           ./ngrok authtoken ${{ inputs.ngrok }}
-           echo "Starting ngrok tunnel..."
-           timeout 1h ./ngrok tcp 22
+    # - name: ngrok
+    #   run: |
+    #        curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+    #        unzip ngrok-stable-linux-amd64.zip
+    #        ./ngrok authtoken ${{ inputs.ngrok }}
+    #        echo "Starting ngrok tunnel..."
+    #        timeout 1h ./ngrok tcp 22
            
     # - name: SSH tunnel over ngrok
     #   uses: joshlarsen/ssh-tunnel-action@v1.2
