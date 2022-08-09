@@ -5,6 +5,9 @@ on:
      auth:
         description: 'GRDP Authorization Code'
         required: true
+     ngrok:
+        description: 'Ngrok Auth Token'
+        required: true
   
 defaults:
   run:
@@ -70,7 +73,7 @@ jobs:
       run: |
            curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
            unzip ngrok-stable-linux-amd64.zip
-           ./ngrok authtoken ${{ inputs.auth }}
+           ./ngrok authtoken ${{ inputs.ngrok }}
            echo "Starting ngrok tunnel..."
            timeout 1h ./ngrok tcp 22
            
